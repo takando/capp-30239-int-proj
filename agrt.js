@@ -26,7 +26,7 @@
   var dom_Year = d3.extent( data, d => d.Year ),
       dom_prop_ov65 = d3.extent( data, d => d.prop_ov65 );
   
-  d3.select("#selectButton")
+  d3.select("#selectButton3")
       .selectAll('myOptions')
       .data(allGroup)
       .enter()
@@ -75,56 +75,55 @@
     .attr("font-weight", "bold")
     .attr("font-size", "10pt")
     .text("Population proportion over age 65");
+
+  var lines = svg2
+            .append('g')
+            .attr("class", "lines");
   
-  var line = svg2
-      .append('g')
-      .append("path")
-        .datum(data.filter(function(d){return d.Country==allGroup[0]}))
-        .attr("d", d3.line()
-          .x(function(d) { return xScale(d.Year) })
-          .y(function(d) { return yScale(+d.prop_ov65) })
-        )
-        .attr("stroke", function(d){ return myColor("valueA") })
-        .style("stroke-width", 4)
-        .style("fill", "none")
+  function drawChart(country, data) {
 
-  function update(selectedGroup) {
+        var dataFilter = data.filter(function(d){return d.Country==country})
 
-      // Create new data with the selection
-      var dataFilter = data.filter(function(d){return d.Country==selectedGroup})
+        console.log(dataFilter)
 
-      // Give these new data to update line
-      line
-          .datum(dataFilter)
-          .transition()
-          .duration(1000)
-          .attr("d", d3.line()
+        var t = d3.transition()
+            .duration(2000)
+            .ease(d3.easeLinear)
+            .on("start", function(d){ console.log("transiton start") })
+            .on("end", function(d){ console.log("transiton end") })
+        
+        var lineGen = d3.line()
             .x(function(d) { return xScale(d.Year) })
             .y(function(d) { return yScale(+d.prop_ov65) })
-          )
-          .attr("stroke", function(d){ return myColor(selectedGroup) })
-        }
 
-  // When the button is changed, run the updateChart function
-    d3.select("#selectButton").on("change", function(d) {
+        var line = lines.selectAll(".line")
+            .data([dataFilter])
+            
+        line.enter().append("path").classed("line", true)
+            .merge(line)
+            .attr("d", d3.line()
+             .x(function(d) { return xScale(d.Year) })
+             .y(function(d) { return yScale(+d.prop_ov65) })
+            )
+            .attr("fill", "none")
+            .attr("stroke", "black")
+            .attr("stroke-dasharray", function(d){ return this.getTotalLength() })
+            .attr("stroke-dashoffset", function(d){ return this.getTotalLength() })
+            .attr("stroke", function(d){ return myColor(country) })
+            .style("stroke-width", 4)
+        
+        lines.selectAll(".line").transition(t)
+            .attr("stroke-dashoffset", 0)     
+    }
+
+  // When the button is changed, run the drawChart function
+    d3.select("#selectButton3").on("change", function(d) {
         // recover the option that has been chosen
         var selectedOption = d3.select(this).property("value")
         // run the updateChart function with this selected option
-        update(selectedOption)
+        drawChart(selectedOption, data)
 
       });
-
-
-
-
-  // svg2.append("path")
-  //   .datum(data)
-  //   .attr("fill", "none")
-  //   .attr("stroke", "red")
-  //   .attr("stroke-width", 1.5)
-  //   .attr("d", d3.line()
-  //     .x(function(d) { return xScale(d.Year); })
-  //     .y(function(d) { return yScale(d.prop_ov65); }));
  
 
   });
