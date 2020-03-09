@@ -154,6 +154,30 @@ d3.csv("https://docs.google.com/spreadsheets/d/1BoR_iikHS0ghwFUn-vpohrnw_OD7rOId
         .attr( 'transform', 'translate(' + (cx+300+gutter) + ',' + (pyramid_h+5) + ')')
         .call( ax_female );
 
+    svg.append('text')
+        .attr('x', (cx+gutter/2+270+5))
+        .attr('y', 0)
+        .attr('class', 'axislabel')
+        .text('Age');
+
+    svg.append('text')
+        .attr('x', (cx+gutter/2-330+5))
+        .attr('y', 0)
+        .attr('class', 'axislabel')
+        .text('Age');
+
+    svg.append('text')
+        .attr('x', cx-200+gutter)
+        .attr('y', pyramid_h+40)
+        .attr('class', 'axislabel')
+        .text('Population rate(%)');
+
+    svg.append('text')
+        .attr('x', cx+400+gutter)
+        .attr('y', pyramid_h+40)
+        .attr('class', 'axislabel')
+        .text('Population rate(%)');
+
     
     // Dropdown list
     var count_menu1 = d3.select("#selectButton1");
@@ -504,13 +528,6 @@ function updateyear(h) {
 
   updatecountry(current_country1, current_country2, Math.floor(h))
 
-
-
-  // filter data set and redraw plot
-  // var newData = dataset.filter(function(d) {
-  //   return d.date < h;
-  // })
-  // drawPlot(newData);
 }
   });
 

@@ -13,6 +13,9 @@ svg {
 .axis line {
   stroke: #000;
 }
+.axislabel {
+  font-weight: bold;
+}
 
 .male {
   fill: #3388EE;
@@ -117,6 +120,10 @@ svg {
       stroke-width: 1.25px;
     }
 
+ .tick line {
+    stroke-dasharray: 2 2 ;
+    stroke: #ccc;
+ }
 
 #scroll {
   position: relative;

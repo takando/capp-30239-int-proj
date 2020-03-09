@@ -49,7 +49,7 @@
   // 
   var axisx = d3.axisBottom(xScale).ticks(10);
   var axisy = d3.axisLeft(yScale).ticks(5)
-                .tickSizeInner(-width2);
+                .tickSizeInner(-(width2-210));
  
   svg2.append("g")
     .attr("transform", "translate(" + 0 + "," + (height2 - margin2.bottom) + ")")
