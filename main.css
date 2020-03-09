@@ -26,29 +26,29 @@ svg {
 
 #selectButton1 {
   position: absolute;
-      top: 200px;
-      left: 10px;
+      top: 40%;
+      left: 2%;
 
 }
 
 #selectButton2 {
   position: absolute;
-      top: 200px;
-      left: 650px;
+      top: 40%;
+      left: 50%;
 
 }
 
 #selectButton3 {
-  position: absolute;
-      top: 880px;
-      left: 10px;
+  position: relative;
+      bottom: 480px;
+      right: 40px;
 
 }
 
 #play-button {
-      position: absolute;
-      top: 680px;
-      left: 170px;
+      position: relative;
+      top: 0px;
+      left: 70px;
       background: #f08080;
       padding-right: 26px;
       border-radius: 3px;
@@ -66,9 +66,9 @@ svg {
     }    
 
 #reset-button {
-      position: absolute;
-      top: 1350px;
-      left: 20px;
+      position: relative;
+      bottom: 10px;
+      left: 10px;
       background: #f08080;
       padding-right: 26px;
       border-radius: 3px;
