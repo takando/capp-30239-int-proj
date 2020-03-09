@@ -1,8 +1,7 @@
   
-
-  var width2 = 900; // 
+  var width2 = 1000; // 
   var height2 = 500; //
-  var margin2 = { "top": 30, "bottom": 60, "right": 30, "left": 60 };
+  var margin2 = { "top": 30, "bottom": 60, "right": 150, "left": 60 };
  
   // 
   var svg2 = d3.select("#age_rate")
@@ -49,7 +48,8 @@
  
   // 
   var axisx = d3.axisBottom(xScale).ticks(10);
-  var axisy = d3.axisLeft(yScale).ticks(5);
+  var axisy = d3.axisLeft(yScale).ticks(5)
+                .tickSizeInner(-width2);
  
   svg2.append("g")
     .attr("transform", "translate(" + 0 + "," + (height2 - margin2.bottom) + ")")
@@ -79,29 +79,30 @@
   var lines = svg2
             .append('g')
             .attr("class", "lines");
+
+  // var countries = d3.map(data, function(d){return(d.Country)}).keys()
+
+  
   
   function drawChart(country, data) {
 
         var dataFilter = data.filter(function(d){return d.Country==country})
 
-        console.log(dataFilter)
+        // var dataFilter = countries.map(country => data.filter(function(d){return d.Country==country}))
+
+        console.log(dataFilter[16])
 
         var t = d3.transition()
             .duration(2000)
             .ease(d3.easeLinear)
             .on("start", function(d){ console.log("transiton start") })
             .on("end", function(d){ console.log("transiton end") })
-        
-        var lineGen = d3.line()
-            .x(function(d) { return xScale(d.Year) })
-            .y(function(d) { return yScale(+d.prop_ov65) })
 
-        var line = lines.selectAll(".line")
-            .data([dataFilter])
-            
-        line.enter().append("path").classed("line", true)
-            .merge(line)
-            .attr("d", d3.line()
+        lines.selectAll("."+country).data([dataFilter])
+             .enter()
+             .append("path")
+             .attr("class", "line " + country)
+             .attr("d", d3.line()
              .x(function(d) { return xScale(d.Year) })
              .y(function(d) { return yScale(+d.prop_ov65) })
             )
@@ -111,9 +112,20 @@
             .attr("stroke-dashoffset", function(d){ return this.getTotalLength() })
             .attr("stroke", function(d){ return myColor(country) })
             .style("stroke-width", 4)
+
+        svg2.append("g").selectAll("text")
+           .data([dataFilter[16]])
+           .enter()
+           .append("text")
+           .attr("class", "countrylabel")
+           .attr("x", function(d) { return xScale(d.Year) + 5 })
+           .attr("y", function(d) { return yScale(d.prop_ov65) })
+           .attr("fill", function(d){ return myColor(country) })
+           .text(function(d) { return d.Country })
         
         lines.selectAll(".line").transition(t)
-            .attr("stroke-dashoffset", 0)     
+            .attr("stroke-dashoffset", 0)
+
     }
 
   // When the button is changed, run the drawChart function
@@ -122,6 +134,15 @@
         var selectedOption = d3.select(this).property("value")
         // run the updateChart function with this selected option
         drawChart(selectedOption, data)
+
+      });
+
+    d3.select("#reset-button").on("click", function() {
+        d3.selectAll(".line").remove() 
+        d3.selectAll(".countrylabel").remove()
+
+
+        // recover the option that has been chosen
 
       });
  
