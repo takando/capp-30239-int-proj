@@ -63,7 +63,27 @@ svg {
 
     #play-button:hover {
       background-color: #696969;
-    }    
+    }
+
+#play-button2 {
+      position: relative;
+      bottom: 10px;
+      left: 10px;
+      background: #f08080;
+      padding-right: 26px;
+      border-radius: 3px;
+      border: none;
+      color: white;
+      margin: 0;
+      padding: 0 12px;
+      width: 60px;
+      cursor: pointer;
+      height: 30px;
+    }
+
+    #play-button2:hover {
+      background-color: #696969;
+    }        
 
 #reset-button {
       position: relative;
@@ -124,6 +144,37 @@ svg {
     stroke-dasharray: 2 2 ;
     stroke: #ccc;
  }
+
+/*.tooltip {
+  fill: #2b2929;
+  font-family: Georgia;
+  font-size: 150%;
+ }*/
+
+.tooltip {
+    position: absolute;
+    text-align: center;
+    width: auto;
+    height: auto;
+    padding: 5px;
+    font: 12px;
+    background: white;
+    -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8);
+    -moz-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8);
+    visibility: hidden;
+  }
+ 
+  .line:hover {
+    stroke: gold;
+  }
+
+  .point {
+    stroke: none;
+    fill: #9c9c9c;
+  }
+
+
 
 #scroll {
   position: relative;
