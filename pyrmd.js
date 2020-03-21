@@ -1,5 +1,5 @@
 d3.csv(
-  "https://docs.google.com/spreadsheets/d/1BoR_iikHS0ghwFUn-vpohrnw_OD7rOIdOoNSfo3gpAw/export?format=csv&gid=1687591646"
+  "https://docs.google.com/spreadsheets/d/1dtEPDzs3qSEHoAMrhPkm_zQlKCYNuGf3YxY77uopGzU/export?format=csv&gid=167986238"
 ).then(function(data) {
   console.log(data);
 
@@ -261,7 +261,7 @@ d3.csv(
     .attr("class", "slider")
     .attr(
       "transform",
-      "translate(" + (cx - 500) + "," + (pyramid_h + 85) + ")"
+      "translate(" + (cx - 450) + "," + (pyramid_h + 85) + ")"
     );
 
   slider
@@ -412,7 +412,7 @@ d3.csv(
       .attr("value", country);
   };
 
-  initialGraph("Afghanistan", 1950);
+  initialGraph("Argentina", 1950);
 
   // // population bars
   // var bars = svg.append('g')
@@ -562,4 +562,17 @@ d3.csv(
 
     updatecountry(current_country1, current_country2, Math.floor(h));
   }
+
+  d3.select("#reset-button").on("click", function() {
+
+    var current_country1 = d3.select("#current_country1").attr("value");
+
+    var current_country2 = d3.select("#current_country2").attr("value");
+
+    updatecountry(current_country1, current_country2, 1950);
+    currentValue=0;
+    handle.attr("cx", x(x.invert(currentValue)));
+    label.attr("x", x(x.invert(currentValue))).text(Math.floor(x.invert(currentValue)));
+  });
+
 });

@@ -25,16 +25,16 @@ svg {
 }
 
 #selectButton1 {
-  position: absolute;
+  position: relative;
       top: 40%;
-      left: 2%;
+      left: 0%;
 
 }
 
 #selectButton2 {
-  position: absolute;
+  position: relative;
       top: 40%;
-      left: 50%;
+      left: 35%;
 
 }
 
@@ -47,8 +47,8 @@ svg {
 
 #play-button {
       position: relative;
-      top: 0px;
-      left: 70px;
+      top: 500px;
+      left: 10px;
       background: #f08080;
       padding-right: 26px;
       border-radius: 3px;
@@ -87,7 +87,7 @@ svg {
 
 #reset-button {
       position: relative;
-      bottom: 10px;
+      top: 500px;
       left: 10px;
       background: #f08080;
       padding-right: 26px;
@@ -102,6 +102,26 @@ svg {
     }
 
 #reset-button:hover {
+      background-color: #696969;
+    }
+
+#reset-button2 {
+      position: relative;
+      bottom: 10px;
+      left: 10px;
+      background: #f08080;
+      padding-right: 26px;
+      border-radius: 3px;
+      border: none;
+      color: white;
+      margin: 0;
+      padding: 0 12px;
+      width: 60px;
+      cursor: pointer;
+      height: 30px;
+    }
+
+#reset-button2:hover {
       background-color: #696969;
     }   
 
@@ -173,78 +193,7 @@ svg {
     stroke: none;
     fill: #9c9c9c;
   }
-
-
-
-#scroll {
-  position: relative;
-  border-top: 1px dashed #000;
-  border-bottom: 1px dashed #000;
-}
-
-.scroll__graphic {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: auto;
-  background-color: #fff;
-  -webkit-transform: translate3d(0, 0, 0);
-  -moz-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-}
-
-.scroll__graphic.is-fixed {
-  position: fixed;
-}
-
-.scroll__graphic.is-bottom {
-  bottom: 0;
-  top: auto;
-}
-
-.chart {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  -moz-transform: translateY(-50%);
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
-  background-color: #ddd;
-  border: 1px solid #000;
-}
-
-.chart p {
-  text-align: center;
-  padding: 1rem;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -moz-transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  font-size: 8rem;
-  font-weight: 900;
-  color: #666;
-}
-
-.scroll__text {
-  position: relative;
-  padding: 0 1rem;
-  max-width: 30rem;
-  width: 33%;
-}
-
-.step {
-  margin: 2rem auto;
-  border: 1px solid #333;
-}
-
-.step.is-active {
-  background-color: lightgoldenrodyellow;
-}
-
-.step p {
-  text-align: center;
-  padding: 1rem;
-  font-size: 1.5rem;
-}
+  
+  .legend {
+    font-weight: bold;
+  }
